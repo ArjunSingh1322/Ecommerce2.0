@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Momo+Signature&family=Pacifico&family=Playwrite+MX+Guides&display=swap" rel="stylesheet"> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yes Mart</title>
+  <style>
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ===== Navbar ===== */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f39c12;
+      padding: 12px 30px;
+      color: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 55xpx
+    }
+
+    nav h1 {
+      font-size: 30px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      font-family: "Momo Signature", cursive;
+      padding-right: 55%;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-bar input {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 20px;
+      width: 250px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .search-bar button {
+      background-color: white;
+      border: none;
+      color: #f39c12;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .search-bar button:hover {
+      background-color: #fff3e0;
+    }
+
+    /* ===== Layout (Sidebar + Store) ===== */
+    .layout {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    /* ===== Sidebar ===== */
+    .sidebar {
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      height: 100%;
+      position: sticky;
+      top: 90px;
+      
+       height: calc(100vh - 90px); 
+  overflow-y: auto;
+    }
+
+    .sidebar h2 {
+      color: #333;
+      text-align: center;
+       padding-top: 20px;
+       font-family: "Momo Signature", cursive;
+      
+    }
+  
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+      text-align: center;
+    }
+
+    .sidebar li {
+      padding: 8px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .sidebar li:hover {
+      background-color: #f39c12;
+      color: white;
+    }
+
+    /* ===== Most Sale Section ===== */
+    .mostsale {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      background-color: #fdfbfa;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .mostsale h3 {
+      margin: 5px 0 10px 0;
+      color: #090908;
+      font-size: 20px;
+      
+    }
+
+    .sale-item {
+      background: #fff;
+      padding: 10px;
+    }
+
+    .sale-item img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .sale-item p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    /* ===== Main Store ===== */
+    .store {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .category h2 {
+      margin-bottom: 12px;
+      color: #333;
+     
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      text-align: center;
+      transition: transform 0.2s;
+      border-radius: 8px;
+    }
+
+    .product:hover {
+      transform: scale(1.03);
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+    }
+
+    .rating {
+      font-weight: bold;
+      color: #f39c12;
+    }
+    .ul{
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        background-color: rgb(232, 238, 238);
+    }
+    .cart{
+      background-color: #f7f7f8;
+      border: none;
+      border-radius: 50px;
+      height: 50px;
+      width: 90px;
+      color: #d79615bb;
+      font-size: large;
+       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      
+    }
+    .add-cart {
+  background-color: #f39c12;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  width: 100%;
+}
+ #cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -450px;
+      width: 350px;
+      height: 100%;
+      background: rgb(229, 229, 226);
+      box-shadow: -2px 0 10px rgba(0,0,0,0.3);
+      transition: 0.3s;
+      padding: 20px;
+      z-index: 999;
+    }
+
+    #cart-sidebar.open {
+      right: 0;
+    }
+
+    #cart-items img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+  </style>
+</head>
+<body>
+  <nav>
+    <button class = "cart" onclick="openCart()"><b>Cart</b></button>
+    <h1>Yes Mart</h1>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search for products...">
+      <button id="search-btn">Search</button>
+    </div>
+  </nav>
+
+   <div id="cart-sidebar">
+    <button class="cart" onclick="closeCart()">Close</button>
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+  </div>
+
+
+  <div class="layout">
+    <div class="sidebar">
+      <div class="ul">
+ <h2>Categories</h2>
+      <ul id="category-list"></ul>
+      </div>
+     
+
+      <div class="mostsale">
+        <h3>🔥 Most Sale Item</h3>
+
+        <div class="sale-item">
+          <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png" alt="Best Seller">
+          <p><strong>Fjallraven - Foldsack No. 1 Backpack</strong></p>
+          <p>⭐ 4.9 Rating</p>
+          <p style="color:#27ae60; font-weight:bold;">$109.95</p>
+        </div>
+
+        <div class="sale-item">
+          <img src="https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_t.png" alt="Best Seller">
+          <p><strong>Solid Gold Petite Micropave</strong></p>
+          <p>⭐ 3.9 Rating</p>
+          <p style="color:#27ae60; font-weight:bold;">$168</p>
+        </div>
+
+        <div class="sale-item">
+          <img src="https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_t.png" alt="Best Seller">
+          <p><strong>Silicon Power 256GB SSD 3D NAND A55</strong></p>
+          <p>⭐ 4.8 Rating</p>
+          <p style="color:#27ae60; font-weight:bold;">$109</p>
+        </div>
+
+        <div class="sale-item">
+          <img src="https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_t.png" alt="Best Seller">
+          <p><strong>Acer SB220Q bi 21.5-inch Full HD</strong></p>
+          <p>⭐ 2.9 Rating</p>
+          <p style="color:#27ae60; font-weight:bold;">$599</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="store" id="store"></div>
+    
+  </div>
+  <script src="cart.js"></script>
+  <script>
+    fetch('https://fakestoreapi.com/products')
+      .then(response => response.json())
+      .then(data => {
+         window.setFetchedProducts(data);
+        let store = document.getElementById('store');
+        let sidebarList = document.getElementById('category-list');
+
+        let categories = {};
+        data.forEach(item => {
+          if (!categories[item.category]) {
+            categories[item.category] = [];
+          }
+          categories[item.category].push(item);
+        });
+
+        // Sidebar categories
+        for (let category in categories) {
+          let li = document.createElement('li');
+          li.textContent = category.toUpperCase();
+          li.addEventListener('click', () => {
+            document.getElementById(category).scrollIntoView({ behavior: 'smooth' });
+          });
+          sidebarList.appendChild(li);
+        }
+
+        // Function to render products
+        function renderProducts(filteredData) {
+          store.innerHTML = "";
+          let grouped = {};
+          filteredData.forEach(item => {
+            if (!grouped[item.category]) grouped[item.category] = [];
+            grouped[item.category].push(item);
+          });
+
+          for (let category in grouped) {
+            let section = document.createElement('div');
+            section.classList.add('category');
+            section.id = category;
+
+            let heading = document.createElement('h2');
+            heading.textContent = category.toUpperCase();
+           
+
+            let container = document.createElement('div');
+            container.classList.add('products');
+
+            grouped[category].forEach(item => {
+              let product = document.createElement('div');
+              product.classList.add('product');
+              product.innerHTML = `
+                <img src="${item.image}" alt="${item.title}">
+                <h3>${item.title}</h3>
+                <p>${item.description.slice(0, 60)}...</p>
+                <p class="rating">⭐ ${item.rating.rate}</p>
+                <button class="add-cart" onclick="addToCart(${item.id})"><b>Add to Cart</b></button>
+
+
+              `;
+              container.appendChild(product);
+            });
+            
+            section.appendChild(heading);
+            section.appendChild(container);
+            store.appendChild(section);
+          }
+        }
+
+        // Initial render
+        renderProducts(data);
+
+        // Search functionality
+        let searchInput = document.getElementById('search-input');
+        let searchBtn = document.getElementById('search-btn');
+
+        function performSearch() {
+          let query = searchInput.value.toLowerCase();
+          let filtered = data.filter(item =>
+            item.title.toLowerCase().includes(query) ||
+            item.description.toLowerCase().includes(query) ||
+            item.category.toLowerCase().includes(query)
+          );
+          renderProducts(filtered);
+        }
+    //    window.addToCart = function(id){
+    //    let cartitem = data.find(value=>value.id==id)
+    //       cart.push(cartitem)
+    //       console.log(cartitem)
+    //    }
+    //  let flag = false
+    //  function cart(){
+    //   flag = true
+    //   if(flag){
+        
+    //   }
+    //  }
+      
+
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keyup', performSearch);
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  </script>
+</body>
+</html>
