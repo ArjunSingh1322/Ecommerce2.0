@@ -266,6 +266,7 @@
     <button class="cart" onclick="closeCart()">Close</button>
     <h2>Your Cart</h2>
     <div id="cart-items"></div>
+    <h3 class="Total"></h3>
   </div>
 
 
@@ -323,7 +324,7 @@
         let sidebarList = document.getElementById('category-list');
 
         let categories = {};
-        data.forEach(item => {
+        data.forEach(item => {   // uniqe category with data
           if (!categories[item.category]) {
             categories[item.category] = [];
           }
@@ -366,8 +367,8 @@
               product.classList.add('product');
               product.innerHTML = `
                 <img src="${item.image}" alt="${item.title}">
-                <h3>${item.title}</h3>
-                <p>${item.description.slice(0, 60)}...</p>
+                <h3>${item.title.slice(0, 20)}</h3>
+                <p>${item.description.slice(0, 50)}...</p>
                 <p class="rating">⭐ ${item.rating.rate}</p>
                 <button class="add-cart" onclick="addToCart(${item.id})"><b>Add to Cart</b></button>
 
@@ -398,20 +399,7 @@
           );
           renderProducts(filtered);
         }
-    //    window.addToCart = function(id){
-    //    let cartitem = data.find(value=>value.id==id)
-    //       cart.push(cartitem)
-    //       console.log(cartitem)
-    //    }
-    //  let flag = false
-    //  function cart(){
-    //   flag = true
-    //   if(flag){
-        
-    //   }
-    //  }
-      
-
+ 
         searchBtn.addEventListener('click', performSearch);
         searchInput.addEventListener('keyup', performSearch);
       })

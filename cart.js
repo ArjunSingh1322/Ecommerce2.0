@@ -18,14 +18,17 @@ window.addToCart = function(id){
 window.openCart = function(){
   document.getElementById("cart-sidebar")
           .classList.add("open");
+  
+
+          
 };
 
 window.closeCart = function(){
   document.getElementById("cart-sidebar")
           .classList.remove("open");
 };
-function Removeitem(id){
-  cart = cart.filter(item => item.id !== id);
+function Removeitem(index){
+  cart.splice(index,1)
   updateCartUI(); 
   if(cart.length==0){
     document.getElementById("cart-sidebar")
@@ -33,19 +36,32 @@ function Removeitem(id){
   }
 }
 
-
 function updateCartUI() {
+  let cartTotal = document.getElementsByClassName("Total")[0];
+  let sum = 0;
+  for (let t of cart) {
+    sum += Number(t.price);
+  }
+  cartTotal.innerText = `Total Cart Price: ₹${sum}`;
+
+
   let box = document.getElementById("cart-items");
   box.innerHTML = "";
 
-  cart.forEach(item => {
+  cart.forEach((item, index) => {
     box.innerHTML += `
       <div class="cart-item">
         <img src="${item.image}">
         <p>${item.title}</p>
-         <p>$${item.price}</p>
-         <button onClick="Removeitem(${item.id})">🗑️ </button>
+        <p>$${item.price}</p>
+        <button onClick="Removeitem(${index})">🗑️</button>
       </div>
     `;
   });
+
+
+  if (cart.length === 0) {
+    document.getElementById("cart-sidebar").classList.remove("open");
+    cartTotal.innerText = "Total Cart Price: $0"; 
+  }
 }
